@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -15,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,24 +28,39 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RegisterScreen() {
-    Scaffold { innerPadding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {Text(text: "Register")},
+                navigationIcon = {
+                    IconButton(onClick ={
+                    Icon(Icons.Default.ArrowBack, contentDescription = null)
+                }){
+            )
+        }
+
+
+
+
+
+    { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding).padding(horizontal = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Imagen de perfil (icono de persona)
+
             Icon(
                 imageVector = Icons.Default.Person,
                 contentDescription = "Icono de persona",
                 modifier = Modifier.size(150.dp),
-                tint = Color(0xFFFF9900) // Aplicamos color al icono
+                tint = Color(0xFFFF9900)
             )
-            Spacer(modifier = Modifier.height(8.dp)) // Espacio entre el icono y la frase
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Frase "Registrarse" debajo del icono
+
             Text(
                 text = "Registrarse",
-                color = Color(0xFFFF9900), // Mismo color que el icono
+                color = Color(0xFFFF9900),
                 style = androidx.compose.ui.text.TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold)
             )
             Spacer(modifier = Modifier.height(16.dp))

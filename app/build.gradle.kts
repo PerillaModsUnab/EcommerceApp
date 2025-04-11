@@ -58,7 +58,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 dependencies {
-    val nav_version = "2.8.9"
 
+    //esta es la libreria de navegacion
     implementation(libs.androidx.navigation.compose)
+
+
+    //esta es la libreria para cargar imagenes de internet
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }

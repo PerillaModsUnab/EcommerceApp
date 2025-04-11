@@ -1,51 +1,40 @@
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: Any) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {Text(text: "Register")},
+                title = { Text(text = "Register") },
                 navigationIcon = {
-                    IconButton(onClick ={
-                    Icon(Icons.Default.ArrowBack, contentDescription = null)
-                }){
+                    IconButton(onClick = {}) {
+                        navController.popBackSatck()
+                        Icon(Icons.Default.ArrowBack, contentDescription = null)
+                    }
+                }
             )
         }
-
-
-
-
-
-    { innerPadding ->
+    ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding).padding(horizontal = 32.dp),
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(horizontal = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -57,7 +46,6 @@ fun RegisterScreen() {
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-
             Text(
                 text = "Registrarse",
                 color = Color(0xFFFF9900),
@@ -65,7 +53,6 @@ fun RegisterScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campo de correo electrónico
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
@@ -84,7 +71,7 @@ fun RegisterScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campo de nombre
+
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
@@ -103,7 +90,7 @@ fun RegisterScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campo de contraseña
+
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
@@ -119,11 +106,10 @@ fun RegisterScreen() {
                     Text(text = "Contraseña")
                 },
                 shape = RoundedCornerShape(12.dp),
-                visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation() // Para ocultar la contraseña
+                visualTransformation = PasswordVisualTransformation()
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campo de confirmación de contraseña
             OutlinedTextField(
                 value = "",
                 onValueChange = {},
@@ -139,11 +125,10 @@ fun RegisterScreen() {
                     Text(text = "Confirmar Contraseña")
                 },
                 shape = RoundedCornerShape(12.dp),
-                visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation() // Para ocultar la contraseña
+                visualTransformation = PasswordVisualTransformation()
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Botón de registro
             Button(
                 onClick = {},
                 modifier = Modifier

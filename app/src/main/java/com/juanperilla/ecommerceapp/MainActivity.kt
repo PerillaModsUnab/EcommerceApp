@@ -31,10 +31,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     composable("login") {
-                        LoginScreen()
+                        LoginScreen(NavController)
                     }
                     composable("register") {
                         RegisterScreen()
+                    }
+                    composable(route:"home"){
+                        homeScreen()
                     }
                 }
             }

@@ -1,57 +1,52 @@
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.juanperilla.ecommerceapp.R
 
 @SuppressLint("InvalidColorHexValue")
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
+    // estado
+    var inputEmail by remember { mutableStateOf("hola") }
+    var inputPassword by remember { mutableStateOf("") }
+
+
+    val activity = LocalView.current.content as Activity
+
     Scaffold { innerPadding ->
         Column(
             Modifier
                 .padding(innerPadding)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(horizontal = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
-
         ) {
-
             Image(
                 painter = painterResource(R.drawable.logounab),
                 contentDescription = "Logo Unab",
                 modifier = Modifier.size(150.dp)
             )
             Spacer(modifier = Modifier.height(32.dp))
-
 
             Text(
                 text = "Iniciar sesión",
@@ -61,10 +56,9 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = inputEmail,
+                onValueChange = { inputEmail = it },
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = {
                     Icon(
@@ -80,10 +74,9 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = inputPassword,
+                onValueChange = { inputPassword = it },
                 modifier = Modifier.fillMaxWidth(),
                 leadingIcon = {
                     Icon(
@@ -99,11 +92,25 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-
             Button(
                 onClick = {
-                    navController.navigate("home")
+                    val auth = Firebase.auth
 
+
+                    auth.signInWithEmailithEmailAndPassword(inputEmail,inputPassword)
+                        .addOnCompleteListener (activity){ task ->
+                            if(task.isSuccessful){
+
+
+
+                            }else{
+                                Log.i("login", "hubo un error")
+
+                            }
+
+                        }
+
+                    navController.navigate("home")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -117,7 +124,6 @@ fun LoginScreen() {
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-
             TextButton(onClick = {}) {
                 Text(
                     text = "¿No tienes una cuenta? Regístrate",
@@ -128,9 +134,15 @@ fun LoginScreen() {
     }
 }
 
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
+fun validateEmail(Email: String):Pair<Boolean, String>{
+    return when {
+        email.isempty() ->pair(false, "El correo es obligatorio")
+        !email.endsWith("@unab.edu.co") -> Pair(false, "El correo debe ser unab. ")
+        else -> Pair(true, "")
+
+    }
+
+
 }
+
 

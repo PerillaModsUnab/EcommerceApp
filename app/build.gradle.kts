@@ -60,8 +60,10 @@ dependencies {
 }
 dependencies {
 
-    //esta es la libreria de navegacion
+    implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
+    implementation ("androidx.navigation:navigation-compose:2.5.0")
+
 
 
     //esta es la libreria para cargar imagenes de internet

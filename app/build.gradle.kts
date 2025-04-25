@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -66,4 +67,8 @@ dependencies {
     //esta es la libreria para cargar imagenes de internet
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+
+    //dependencia de firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
 }

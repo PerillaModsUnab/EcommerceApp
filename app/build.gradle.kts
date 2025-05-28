@@ -60,9 +60,10 @@ dependencies {
 }
 dependencies {
 
+    implementation(libs.firebase.auth)
     implementation(libs.androidx.navigation.runtime.android)
     implementation(libs.androidx.navigation.compose)
-    implementation ("androidx.navigation:navigation-compose:2.5.0")
+    implementation (libs.androidx.navigation.compose.v250)
 
 
 
@@ -72,5 +73,5 @@ dependencies {
 
 
     //dependencia de firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation(libs.firebase.bom)
 }
